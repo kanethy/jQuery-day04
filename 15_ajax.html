@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/jquery-1.11.3.js"></script>
+</head>
+<body>
+  <script>
+    //想从东哥新浪云服务器中请求学子商城首页的6个商品对象组成的数组。
+    //已知: 服务端接口地址:http://xzserver.applinzi.com/index
+    //类型: get
+    //不需要参数: 
+    $.ajax({
+      //url:"http://xzserver.applinzi.com/index",
+      url:"http://www.codeboy.com:9999/data/product/index.php",
+      type: "get",
+      dataType:"json", //说明服务器端返回的是json字符串，需要自动调用JSON.parse()转为js对象或数组
+      success:function( result ){ //只在请求响应成功结束后才自动执行！
+        //result就是服务器端返回的响应结果，且已经被JSON.parse()转为了js的数组或对象，不再需要手工调用JSON.parse()了！
+        console.log(result);
+      }
+    })
+    //想从东哥新浪云服务器/details接口获得5号商品的详细信息
+    //类型: get
+    //参数: lid=商品编号
+    $.ajax({
+      // url:"http://xzserver.applinzi.com/details",
+      url:"http://www.codeboy.com:9999/data/product/details.php",
+      type: "get",
+      data:{ lid:5 },
+      dataType:"json" ,
+      success:function( result ){
+        console.log(result);
+      }
+    })
+    //想用东哥新浪云服务器的登陆接口验证用户名和密码
+    //类型: post
+    //参数: uname=用户名  upwd=密码
+    $.ajax({
+      // url:"http://xzserver.applinzi.com/users/signin",
+      url:"http://www.codeboy.com:9999/data/user/login.php",
+      type: "post",
+      data:{ uname:"dingding", upwd:"123456" },
+      dataType:"json" ,
+      success:function( result ){
+        console.log(result);
+      }
+    })
+  </script>
+</body>
+</html>

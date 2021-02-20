@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>85</li>
+        <li>91</li>
+        <li>73</li>
+        <li>59</li>
+      </ul>
+      <script src="js/jquery-1.11.3.js"></script>
+      <script>
+          //jQuery.fn=jQuery.prototype
+          jQuery.fn.sum=function(){
+            var result=0;
+
+            //问题: this是否需要$()包裹？
+            //答: 不用。因为.前已经是$("选择器")的一个jq对象了。所以，不需要再重复$()
+            for(var i=0;i<this.length;i++){
+                //this[i]取出的是jq查找结果中某一个DOM元素对象，而不是元素的内容
+                result+=parseFloat(this[i].innerHTML);
+            }
+            return result;
+          }
+
+          console.log($("ul>li").sum());
+
+
+          $.ajax({
+              url:"http://www.codeboy.com:9999/data/product/index.php",
+              type:"get",
+              dataType:"json",
+              success:function(result){
+                  console.log(result);
+              }
+          })
+
+          $.ajax({
+              url:"http://www.codeboy.com:9999/data/product/details.php",
+              type:"get",
+              data:{lid:5},
+              dataType:"json",
+              success:function(result){
+                  console.log(result);
+              }
+          })
+
+          $.ajax({
+              url:"http://www.codeboy.com:9999/data/user/login.php",
+              type:"post",
+              data:{uname:"dingding",upwd:"123456"},
+              dataType:"json",
+              success:function(result){
+                  console.log(result);
+              }
+          })
+      </script>
+</body>
+</html>
